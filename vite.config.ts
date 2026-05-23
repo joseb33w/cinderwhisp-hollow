@@ -1,1 +1,3 @@
-aW1wb3J0IHsgZGVmaW5lQ29uZmlnIH0gZnJvbSAndml0ZSc7CgpleHBvcnQgZGVmYXVsdCBkZWZpbmVDb25maWcoewogIGJhc2U6ICcuLycsCn0pOwo=
+import { defineConfig } from 'vite';
+
+export default defineConfig({ base: './' });

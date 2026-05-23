@@ -1,1 +1,7 @@
-aW1wb3J0IGpzIGZyb20gJ0Blc2xpbnQvanMnOwppbXBvcnQgdHNlc2xpbnQgZnJvbSAndHlwZXNjcmlwdC1lc2xpbnQnOwoKZXhwb3J0IGRlZmF1bHQgdHNlc2xpbnQuY29uZmlnKAogIGpzLmNvbmZpZ3MucmVjb21tZW5kZWQsCiAgLi4udHNlc2xpbnQuY29uZmlncy5yZWNvbW1lbmRlZCwKICB7CiAgICBpZ25vcmVzOiBbJ2Rpc3QvKionXSwKICB9LAogIHsKICAgIGxhbmd1YWdlT3B0aW9uczogewogICAgICBnbG9iYWxzOiB7CiAgICAgICAgZG9jdW1lbnQ6ICdyZWFkb25seScsCiAgICAgICAgd2luZG93OiAncmVhZG9ubHknLAogICAgICAgIG5hdmlnYXRvcjogJ3JlYWRvbmx5JywKICAgICAgICBIVE1MQ2FudmFzRWxlbWVudDogJ3JlYWRvbmx5JywKICAgICAgICBDYW52YXNSZW5kZXJpbmdDb250ZXh0MkQ6ICdyZWFkb25seScsCiAgICAgICAgSW1hZ2U6ICdyZWFkb25seScsCiAgICAgICAgcmVxdWVzdEFuaW1hdGlvbkZyYW1lOiAncmVhZG9ubHknLAogICAgICAgIHNldEludGVydmFsOiAncmVhZG9ubHknLAogICAgICAgIGNsZWFySW50ZXJ2YWw6ICdyZWFkb25seScsCiAgICAgICAgc2V0VGltZW91dDogJ3JlYWRvbmx5JywKICAgICAgICBVUkw6ICdyZWFkb25seScsCiAgICAgICAgQmxvYjogJ3JlYWRvbmx5JywKICAgICAgICBjcnlwdG86ICdyZWFkb25seScsCiAgICAgICAgY29uc29sZTogJ3JlYWRvbmx5JywKICAgICAgICBsb2NhbFN0b3JhZ2U6ICdyZWFkb25seScsCiAgICAgICAgS2V5Ym9hcmRFdmVudDogJ3JlYWRvbmx5JwogICAgICB9CiAgICB9CiAgfQopOwo=
+import js from '@eslint/js';
+import tseslint from 'typescript-eslint';
+
+export default tseslint.config(js.configs.recommended, ...tseslint.configs.recommended, {
+  ignores: ['dist/**'],
+  languageOptions: { globals: { document: 'readonly', window: 'readonly', navigator: 'readonly', requestAnimationFrame: 'readonly', innerWidth: 'readonly', innerHeight: 'readonly', devicePixelRatio: 'readonly', addEventListener: 'readonly', setTimeout: 'readonly', setInterval: 'readonly', clearInterval: 'readonly', performance: 'readonly', FormData: 'readonly', HTMLFormElement: 'readonly', HTMLButtonElement: 'readonly', HTMLCanvasElement: 'readonly', CanvasRenderingContext2D: 'readonly', PointerEvent: 'readonly' } }
+});
