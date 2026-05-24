@@ -1,0 +1,90 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg-deep: #06091a;
+  --color-bg-mid: #0b1230;
+  --color-accent-gold: #f5c451;
+  --color-accent-gold-dark: #b8841d;
+  --color-accent-silver: #c8d3e6;
+}
+
+html, body, #app { min-height: 100dvh; }
+
+body {
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(245, 196, 81, 0.15), transparent 60%),
+    radial-gradient(ellipse 90% 70% at 50% 110%, rgba(99, 102, 241, 0.2), transparent 60%),
+    linear-gradient(180deg, #050818 0%, #0b1230 100%);
+  background-attachment: fixed;
+}
+
+.coin-stage { perspective: 1200px; }
+
+.coin {
+  width: 220px; height: 220px; position: relative; transform-style: preserve-3d;
+  cursor: pointer; user-select: none; -webkit-tap-highlight-color: transparent;
+  border: none; background: transparent; padding: 0;
+}
+.coin:not(.is-flipping) { animation: subtle-bob 3.5s ease-in-out infinite; }
+
+.coin__face {
+  position: absolute; inset: 0; border-radius: 9999px; backface-visibility: hidden;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 800; letter-spacing: 0.05em;
+  font-family: ui-serif, Georgia, "Times New Roman", serif;
+  color: #4a2d05;
+  text-shadow: 0 1px 0 rgba(255, 220, 140, 0.6), 0 2px 6px rgba(0, 0, 0, 0.3);
+  background: radial-gradient(circle at 30% 28%, #ffe9a1 0%, #f5c451 35%, #c98e22 70%, #6e4a0e 100%);
+  box-shadow:
+    inset 0 0 0 6px rgba(0, 0, 0, 0.08),
+    inset 0 0 0 10px rgba(255, 230, 160, 0.5),
+    inset 0 -20px 30px rgba(0, 0, 0, 0.25),
+    inset 0 20px 25px rgba(255, 255, 255, 0.35),
+    0 24px 50px -12px rgba(245, 196, 81, 0.55),
+    0 8px 20px rgba(0, 0, 0, 0.5);
+}
+.coin__face::before { content: ""; position: absolute; inset: 14px; border-radius: 9999px; border: 2px dashed rgba(74, 45, 5, 0.35); }
+.coin__face--heads { transform: rotateY(0deg) translateZ(8px); }
+.coin__face--tails { transform: rotateY(180deg) translateZ(8px); }
+.coin__face-label { font-size: 3rem; line-height: 1; position: relative; z-index: 1; }
+.coin__face-sub { position: absolute; bottom: 28px; font-size: 0.65rem; letter-spacing: 0.4em; font-weight: 700; color: rgba(74, 45, 5, 0.7); font-family: ui-sans-serif, system-ui, sans-serif; }
+
+.coin__edge {
+  position: absolute; inset: 0; border-radius: 9999px; transform: translateZ(0);
+  background: linear-gradient(90deg, #8a5d10 0%, #f5c451 25%, #c98e22 50%, #f5c451 75%, #8a5d10 100%);
+  opacity: 0.35; filter: blur(0.5px);
+}
+
+.coin-shadow {
+  width: 180px; height: 22px; border-radius: 9999px; margin: 14px auto 0;
+  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0) 70%);
+  transform: translateZ(0); filter: blur(2px); transition: all 0.4s ease;
+}
+.coin.is-flipping ~ .coin-shadow { transform: scaleX(0.6); opacity: 0.45; }
+
+@keyframes subtle-bob { 0%, 100% { translate: 0 0; } 50% { translate: 0 -6px; } }
+
+.pill {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 2.25rem; height: 2.25rem; border-radius: 9999px;
+  font-weight: 700; font-size: 0.95rem; font-family: ui-serif, Georgia, serif;
+  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.15), 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+.pill--heads { background: linear-gradient(140deg, #f5c451, #b8841d); color: #2a1a02; }
+.pill--tails { background: linear-gradient(140deg, #c8d3e6, #6a7794); color: #16203a; }
+
+.result-flash { animation: result-fade 1.6s ease forwards; }
+@keyframes result-fade {
+  0% { opacity: 0; transform: translateY(8px); }
+  20% { opacity: 1; transform: translateY(0); }
+  80% { opacity: 1; }
+  100% { opacity: 0; transform: translateY(-4px); }
+}
+
+button { cursor: pointer; }
+button:disabled { cursor: not-allowed; opacity: 0.55; }
+
+@media (max-width: 380px) {
+  .coin, .coin__face { width: 180px; height: 180px; }
+  .coin__face-label { font-size: 2.4rem; }
+}
